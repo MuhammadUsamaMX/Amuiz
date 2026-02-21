@@ -1,118 +1,358 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
-
 <head>
-    <meta charset="utf-8">
-    <title> Personal Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amuiz Studio | Digital Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060b1a;
+      --surface: #0d1529;
+      --surface-soft: #121d37;
+      --primary: #5c8dff;
+      --primary-soft: #87a9ff;
+      --text: #e8eeff;
+      --muted: #9aa8cd;
+      --border: rgba(255, 255, 255, 0.1);
+      --success: #59d9a5;
+    }
 
-    <!-- Template Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
+    * { box-sizing: border-box; }
 
-    <!-- Template CSS Files -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/preloader.min.css" rel="stylesheet">
-    <link href="css/circle.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at 10% 10%, #1b2d57 0%, var(--bg) 45%);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-    <!-- CSS Skin File -->
-    <link href="css/skins/blue.css" rel="stylesheet">
-    <!-- Modernizr JS File -->
-    <script src="js/modernizr.custom.js"></script>
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 11, 26, 0.75);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+      gap: 1rem;
+    }
+
+    .brand { font-weight: 800; letter-spacing: 0.3px; font-size: 1.1rem; }
+
+    .brand span { color: var(--primary-soft); }
+
+    .menu { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .menu a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s ease;
+    }
+    .menu a:hover, .menu a:focus-visible { color: var(--text); }
+
+    .hero {
+      padding: 4.2rem 0 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--primary-soft);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.1;
+      margin: 0 0 1rem;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 58ch;
+      margin-bottom: 1.7rem;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+    .btn {
+      display: inline-block;
+      border-radius: 999px;
+      padding: .78rem 1.2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--primary), #6f58ff);
+      color: white;
+      box-shadow: 0 8px 28px rgba(92, 141, 255, .35);
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.3rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .hero-meta {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .stats, .services, .process, .testimonials, .cta {
+      padding: 1.1rem 0 3rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.2rem;
+    }
+
+    .stat-number {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: .2rem;
+    }
+
+    h2 { margin: 0 0 .6rem; font-size: clamp(1.4rem, 3vw, 2.2rem); }
+
+    .section-head {
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .subtext { color: var(--muted); max-width: 56ch; }
+
+    .service-title { font-weight: 700; margin-bottom: .35rem; }
+
+    .step {
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+    }
+
+    .badge {
+      background: rgba(89, 217, 165, .12);
+      color: var(--success);
+      border: 1px solid rgba(89, 217, 165, .25);
+      border-radius: 999px;
+      padding: .2rem .6rem;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    .quote {
+      color: #dbe5ff;
+      font-size: 1.02rem;
+      margin-bottom: .8rem;
+    }
+
+    .cta-box {
+      background: linear-gradient(130deg, #3758b6, #1a2862);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 24px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      padding: 1.4rem 0 2.1rem;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 2.3rem; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .section-head { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
-
-<body class="home">
-<!-- Header Starts -->
-<header class="header" id="navbar-collapse-toggle">
-    <!-- Fixed Navigation Starts -->
-    <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
-        <li class="icon-box active">
-            <i class="fa fa-home"></i>
-            <a href="index.html">
-                <h2>Home</h2>
-            </a>
-        </li>
-        <li class="icon-box">
-            <i class="fa fa-user"></i>
-            <a href="about.html">
-                <h2>About</h2>
-            </a>
-        </li>
-        <li class="icon-box">
-            <i class="fa fa-briefcase"></i>
-            <a href="portfolio.html">
-                <h2>Portfolio</h2>
-            </a>
-        </li>
-        <li class="icon-box">
-            <i class="fa fa-envelope-open"></i>
-            <a href="contact.html">
-                <h2>Contact</h2>
-            </a>
-        </li>
-        <li class="icon-box">
-            <i class="fa fa-comments"></i>
-            <a href="blog.html">
-                <h2>Blog</h2>
-            </a>
-        </li>
-    </ul>
-    <!-- Fixed Navigation Ends -->
-    <!-- Mobile Menu Starts -->
-    <nav role="navigation" class="d-block d-lg-none">
-        <div id="menuToggle">
-            <input type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul class="list-unstyled" id="menu">
-                <li class="active"><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
-                <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
-                <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
-                <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
-                <li><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
-            </ul>
-        </div>
-    </nav>
-    <!-- Mobile Menu Ends -->
-</header>
-<!-- Header Ends -->
-<!-- Main Content Starts -->
-<section class="container-fluid main-container container-home p-0 revealator-slideup revealator-once revealator-delay1">
-    <div class="color-block d-none d-lg-block"></div>
-    <div class="row home-details-container align-items-center">
-        <div class="col-lg-4 bg position-fixed d-none d-lg-block"></div>
-        <div class="col-12 col-lg-8 offset-lg-4 home-details text-left text-sm-center text-lg-left">
-            <div>
-                <img src="img/img-mobile.jpg" class="img-fluid main-img-mobile d-none d-sm-block d-lg-none" alt="my picture" />
-                <h6 class="text-uppercase open-sans-font mb-0 d-block d-sm-none d-lg-block">hi there !</h6>
-                <h1 class="text-uppercase poppins-font"><span>I'm</span> Muhammad Usama</h1>
-                <p class="open-sans-font">I'm a Tunisian based web designer & front‑end developer focused on crafting clean & user‑friendly experiences, I am passionate about building excellent software that improves the lives of those around me.</p>
-                <a href="about.html" class="btn btn-about">more about me</a>
-            </div>
-        </div>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Amuiz<span> Studio</span></div>
+      <nav class="menu" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-</section>
-<!-- Main Content Ends -->
+  </header>
 
-<!-- Template JS Files -->
-<script src="js/jquery-3.5.0.min.js"></script>
-<script src="js/styleswitcher.js"></script>
-<script src="js/preloader.min.js"></script>
-<script src="js/fm.revealator.jquery.min.js"></script>
-<script src="js/imagesloaded.pkgd.min.js"></script>
-<script src="js/masonry.pkgd.min.js"></script>
-<script src="js/classie.js"></script>
-<script src="js/cbpGridGallery.js"></script>
-<script src="js/jquery.hoverdir.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/custom.js"></script>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Product Designer & Front-end Developer</p>
+        <h1>Designing premium digital experiences that people remember.</h1>
+        <p class="lead">I help startups and ambitious teams turn rough ideas into beautiful, high-converting websites and product interfaces. From strategy to polished launch, every detail is crafted to grow your business.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="portfolio.html">View My Work</a>
+          <a class="btn btn-ghost" href="contact.html">Start a Project</a>
+        </div>
+      </div>
+      <article class="hero-card" aria-label="Featured work snapshot">
+        <img src="img/projects/project-3.jpg" alt="Landing page interface showcase" />
+        <div class="hero-meta">
+          <span>Featured: Fintech Dashboard</span>
+          <span>2026</span>
+        </div>
+      </article>
+    </section>
 
+    <section class="stats">
+      <div class="grid-3">
+        <article class="card">
+          <div class="stat-number">120+</div>
+          <div>Projects delivered across SaaS, eCommerce, and B2B platforms.</div>
+        </article>
+        <article class="card">
+          <div class="stat-number">48h</div>
+          <div>Average turnaround to deliver first design direction.</div>
+        </article>
+        <article class="card">
+          <div class="stat-number">98%</div>
+          <div>Client satisfaction from collaborative, transparent process.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="section-head">
+        <div>
+          <h2>What I can help you build</h2>
+          <p class="subtext">End-to-end support for companies looking to improve product quality, user engagement, and brand perception.</p>
+        </div>
+        <span class="badge">Available for Q2 Projects</span>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <p class="service-title">Website Design & Development</p>
+          <p class="subtext">Modern, responsive sites optimized for speed, accessibility, and conversion from day one.</p>
+        </article>
+        <article class="card">
+          <p class="service-title">UI/UX Product Design</p>
+          <p class="subtext">User-centered flows, wireframes, and interfaces that balance business goals with clarity and usability.</p>
+        </article>
+        <article class="card">
+          <p class="service-title">Design Systems</p>
+          <p class="subtext">Scalable visual foundations and reusable components that keep teams fast and consistent.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="process">
+      <div class="section-head">
+        <div>
+          <h2>A simple process, built for momentum</h2>
+          <p class="subtext">I keep communication clear and progress visible, so your team can move quickly with confidence.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card step">
+          <strong>01</strong>
+          <div><strong>Discovery</strong><br><span class="subtext">Align on goals, users, priorities, and project roadmap.</span></div>
+        </article>
+        <article class="card step">
+          <strong>02</strong>
+          <div><strong>Design & Build</strong><br><span class="subtext">Rapid iterations with real feedback until the experience feels right.</span></div>
+        </article>
+        <article class="card step">
+          <strong>03</strong>
+          <div><strong>Launch & Improve</strong><br><span class="subtext">Ship confidently and refine with measurable insights.</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="grid-3">
+        <article class="card">
+          <p class="quote">“Amuiz took our outdated website and transformed it into a polished conversion machine. The process was smooth and the result exceeded expectations.”</p>
+          <strong>— Lena, Growth Lead</strong>
+        </article>
+        <article class="card">
+          <p class="quote">“The attention to detail and speed of execution were incredible. We shipped faster and users immediately noticed the upgrade.”</p>
+          <strong>— Karim, Product Manager</strong>
+        </article>
+        <article class="card">
+          <p class="quote">“From first wireframe to final handoff, everything was strategic and thoughtful. Highly recommended for serious product teams.”</p>
+          <strong>— Sofia, Startup Founder</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="cta-box">
+        <h2>Ready to revamp your digital presence?</h2>
+        <p class="subtext">Let’s talk about your goals and map out a clean, high-impact direction for your next launch.</p>
+        <div class="actions" style="justify-content:center; margin-top: 1rem;">
+          <a class="btn btn-primary" href="contact.html">Book a Discovery Call</a>
+          <a class="btn btn-ghost" href="about.html">More About Me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Amuiz Studio — crafted with strategy, design, and clean code.
+  </footer>
 </body>
-
 </html>
